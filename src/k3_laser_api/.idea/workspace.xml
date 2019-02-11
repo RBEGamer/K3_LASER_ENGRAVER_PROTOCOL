@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="k3_laser_api" targetName="k3_laser_api" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b4a9c4fa-da35-4069-aa00-31dccfce44c8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/k3_laser_api.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/k3_laser_api.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/k3_laser_api.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/k3_laser_api.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/k3_laser_api.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/k3_laser_api.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/k3_laser_api.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/k3_laser_api.dir/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/k3_laser_api.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/k3_laser_api.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/tmp/0_A.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/tmp/1_A.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="85" selection-start-line="3" selection-start-column="85" selection-end-line="3" selection-end-column="85" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2421">
+              <caret line="674" selection-start-line="674" selection-end-line="674" />
+              <folding>
+                <element signature="e#1749#1766#0" expanded="true" />
+                <element signature="e#6776#6790#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/cxxopts.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29141">
+              <caret line="2051" selection-start-line="2051" selection-end-line="2051" />
+              <folding>
+                <element signature="e#1141#1159#0" expanded="true" />
+                <element signature="e#1401#1449#0" expanded="true" />
+                <element signature="e#2127#4187#0" expanded="true" />
+                <element signature="e#4261#4273#0" expanded="true" />
+                <element signature="e#4687#4706#0" expanded="true" />
+                <element signature="e#4840#4852#0" expanded="true" />
+                <element signature="e#5132#5199#0" expanded="true" />
+                <element signature="e#10549#10569#0" expanded="true" />
+                <element signature="e#10624#10636#0" expanded="true" />
+                <element signature="e#10716#10728#0" expanded="true" />
+                <element signature="e#11439#11451#0" expanded="true" />
+                <element signature="e#11532#11544#0" expanded="true" />
+                <element signature="e#11662#11686#0" expanded="true" />
+                <element signature="e#11932#11956#0" expanded="true" />
+                <element signature="e#12342#12366#0" expanded="true" />
+                <element signature="e#12534#12546#0" expanded="true" />
+                <element signature="e#14641#14653#0" expanded="true" />
+                <element signature="e#17038#17050#0" expanded="true" />
+                <element signature="e#17195#17207#0" expanded="true" />
+                <element signature="e#17429#17619#0" expanded="true" />
+                <element signature="e#17645#17657#0" expanded="true" />
+                <element signature="e#17779#17791#0" expanded="true" />
+                <element signature="e#17928#17940#0" expanded="true" />
+                <element signature="e#20956#20968#0" expanded="true" />
+                <element signature="e#21290#21292#0" expanded="true" />
+                <element signature="e#22125#22137#0" expanded="true" />
+                <element signature="e#22265#22277#0" expanded="true" />
+                <element signature="e#24880#24892#0" expanded="true" />
+                <element signature="e#25080#25149#0" expanded="true" />
+                <element signature="e#25977#25989#0" expanded="true" />
+                <element signature="e#30678#30697#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bitmap/bitmap_image.hpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="23460">
+              <caret line="1564" selection-start-line="1564" selection-end-line="1564" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bitmap/bitmap_test.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3465">
+              <caret line="231" column="24" selection-start-line="231" selection-start-column="24" selection-end-line="231" selection-end-column="24" />
+              <folding>
+                <element signature="e#1351#1367#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/serial/serialib.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="277" selection-start-line="277" selection-end-line="277" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/serial/serialib.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1590">
+              <caret line="106" column="89" selection-start-line="106" selection-start-column="89" selection-end-line="106" selection-end-column="89" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>sqrt</find>
+      <find>load</find>
+      <find>start_en</find>
+      <find>wait</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/serial-master/include/serial/serial.h" />
+        <option value="$PROJECT_DIR$/serial/serial.cc" />
+        <option value="$PROJECT_DIR$/serial/serialib.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/serial/serialib.h" />
+        <option value="$PROJECT_DIR$/bitmap/bitmap_image.hpp" />
+        <option value="$PROJECT_DIR$/main.cpp" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="1066" />
+    <option name="y" value="27" />
+    <option name="width" value="1687" />
+    <option name="height" value="1413" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="k3_laser_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="k3_laser_api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="k3_laser_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="k3_laser_api" type="462c0819:PsiDirectoryNode" />
+              <item name="bitmap" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="k3_laser_api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="k3_laser_api" type="462c0819:PsiDirectoryNode" />
+              <item name="serial" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="k3_laser_api" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$/cmake-build-debug" PASS_PARENT_ENVS_2="true" PROJECT_NAME="k3_laser_api" TARGET_NAME="k3_laser_api" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="k3_laser_api" RUN_TARGET_NAME="k3_laser_api">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b4a9c4fa-da35-4069-aa00-31dccfce44c8" name="Default Changelist" comment="" />
+      <created>1549646989308</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1549646989308</updated>
+      <workItem from="1549646992338" duration="1963000" />
+      <workItem from="1549649603853" duration="4118000" />
+      <workItem from="1549655286833" duration="2630000" />
+      <workItem from="1549660473925" duration="1767000" />
+      <workItem from="1549662331734" duration="10838000" />
+      <workItem from="1549737601748" duration="4732000" />
+      <workItem from="1549749155851" duration="221000" />
+      <workItem from="1549749415651" duration="988000" />
+      <workItem from="1549750429082" duration="1420000" />
+      <workItem from="1549752653898" duration="8489000" />
+      <workItem from="1549802222868" duration="366000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="38585000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="67" y="25" width="1687" height="1415" extended-state="4" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14137721" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.41133454" weight="0.3273717" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.46983546" weight="0.39735615" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Database Changes" order="7" />
+      <window_info active="true" anchor="bottom" id="Messages" order="8" sideWeight="0.3814747" visible="true" weight="0.22083981" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4996953" weight="0.32943925" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.61852527" side_tool="true" visible="true" weight="0.22083981" />
+      <window_info anchor="bottom" id="Version Control" order="11" />
+      <window_info anchor="bottom" id="CMake" order="12" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>279</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>508</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>681</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>674</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/serial-master/include/serial/serial.h" />
+    <entry file="file://$PROJECT_DIR$/serial-master/examples/serial_example.cc" />
+    <entry file="file://$PROJECT_DIR$/serial/serial.h" />
+    <entry file="file://$PROJECT_DIR$/serial/serial.cc" />
+    <entry file="file://$PROJECT_DIR$/bitmap/bitmap_image.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23460">
+          <caret line="1564" selection-start-line="1564" selection-end-line="1564" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="85" selection-start-line="3" selection-start-column="85" selection-end-line="3" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bitmap/bitmap_test.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3465">
+          <caret line="231" column="24" selection-start-line="231" selection-start-column="24" selection-end-line="231" selection-end-column="24" />
+          <folding>
+            <element signature="e#1351#1367#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial/serialib.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1590">
+          <caret line="106" column="89" selection-start-line="106" selection-start-column="89" selection-end-line="106" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serial/serialib.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="277" selection-start-line="277" selection-end-line="277" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2421">
+          <caret line="674" selection-start-line="674" selection-end-line="674" />
+          <folding>
+            <element signature="e#1749#1766#0" expanded="true" />
+            <element signature="e#6776#6790#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

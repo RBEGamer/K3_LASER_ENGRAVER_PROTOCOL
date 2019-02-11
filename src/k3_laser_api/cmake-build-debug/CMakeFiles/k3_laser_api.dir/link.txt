@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/k3_laser_api.dir/main.cpp.o CMakeFiles/k3_laser_api.dir/serial/serialib.cpp.o  -o k3_laser_api 
