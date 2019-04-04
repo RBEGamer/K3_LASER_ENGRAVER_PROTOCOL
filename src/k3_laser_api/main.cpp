@@ -548,7 +548,7 @@ int main(int argc, char *argv[]) {
     int offset_x = 0;
     int offset_y = 0;
     bool discrete = false;
-    int paases = 1;
+    int passes = 1;
 
     try
     {
@@ -638,8 +638,11 @@ int main(int argc, char *argv[]) {
 
 if (result.count("passes"))
         {
-            paases =  result["passes"].as<int>();
-            std::cout << "set paases = " <<paases<< std::endl;
+            passes =  result["passes"].as<int>();
+            if(passes<= 0){
+            passes = 1;
+            }
+            std::cout << "set paases = " <<passes<< std::endl;
         }
         
         
@@ -688,7 +691,7 @@ if (result.count("passes"))
 
 
 
-    Ret =  start_engraving(ser, file_to_laser,bwt,false,laser_depth,discrete,fan,offset_x,offset_y,paases);
+    Ret =  start_engraving(ser, file_to_laser,bwt,false,laser_depth,discrete,fan,offset_x,offset_y,passes);
 
 
 
