@@ -375,7 +375,7 @@ int scale_image(bitmap_image& _img, int _scale_factor =3200){
 }
 
 
-int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_treshhold = 128, bool _gen_only_images = false, int _engraving_depth_intensity = 30,bool _discrete = false, bool _enable_fan = true, int _engrave_start_offset_x = 0, int _engrave_start_offset_y = 0) {
+int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_treshhold = 128, bool _gen_only_images = false, int _engraving_depth_intensity = 30,bool _discrete = false, bool _enable_fan = true, int _engrave_start_offset_x = 0, int _engrave_start_offset_y = 0, int _passes =  1) {
 
     std::string tmp_filename = gen_radnom_str();//storing the processed image for deb
     bitmap_image image(_bitmap_file);
@@ -497,10 +497,12 @@ int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_
 
 
         if(is_line_white ){
+            for(int pass = 0; pass < _passes;pass++)
             _ser.Write(img_line_buffer,ilbsize);//SEND BUFFER TO ENGRAVER
             wait_for_ack(_ser);
             std::cout << "progress_" << current_height_progress <<std::endl;
             thread_sleep(100);
+        }
         }
 
     }
@@ -546,7 +548,7 @@ int main(int argc, char *argv[]) {
     int offset_x = 0;
     int offset_y = 0;
     bool discrete = false;
-
+    int paases = 1;
 
     try
     {
@@ -568,6 +570,7 @@ int main(int argc, char *argv[]) {
                         ("discrete", "enables the discrete mode", cxxopts::value<bool>(), "true,false")
                         ("offsetx", "offsets the image X", cxxopts::value<int>(), "0-1600-imgage width")
                         ("offsety", "offsets the image Y", cxxopts::value<int>(), "0-1520-imgage width")
+                        ("passes", "how many passes, increase the depth", cxxopts::value<int>(), "1-99")
                         ("help", "Print help")
                 ;
 
@@ -633,7 +636,13 @@ int main(int argc, char *argv[]) {
             std::cout << "set offsety = " <<offset_y<< std::endl;
         }
 
-
+if (result.count("passes"))
+        {
+            paases =  result["passes"].as<int>();
+            std::cout << "set paases = " <<paases<< std::endl;
+        }
+        
+        
         std::cout << "Arguments remain = " << argc << std::endl;
 
     } catch (const cxxopts::OptionException& e)
@@ -679,7 +688,7 @@ int main(int argc, char *argv[]) {
 
 
 
-    Ret =  start_engraving(ser, file_to_laser,bwt,false,laser_depth,discrete,fan,offset_x,offset_y);
+    Ret =  start_engraving(ser, file_to_laser,bwt,false,laser_depth,discrete,fan,offset_x,offset_y,paases);
 
 
 
