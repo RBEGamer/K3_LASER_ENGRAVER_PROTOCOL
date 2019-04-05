@@ -30,11 +30,11 @@ using namespace std;
 #define TRAVEL_TIME_DELAY 10 //the laser need 10seconds fpr 1600pixel to move, so we have to wait 10ms for one step
 #define TRAVE_TRIME_THRESHOLD 100 //add a delay if travel time is more than 100 ms
 
-#define LASER_POWER_MW 1000
+#define LASER_POWER_MW 1000 //has no (visible )effect to my model
 
 
 serialib ser;
-int Ret;             //returns the recieved serial chars                                                   // Used for return values
+int Ret;             //returns the recieved serial chars
 
 
 typedef unsigned char BYTE;
@@ -60,7 +60,6 @@ typedef std::vector<char> char_array;
 
 char_array charset()
 {
-    //Change this to suit
     return char_array(
             {'0','1','2','3','4',
              '5','6','7','8','9',
@@ -86,23 +85,13 @@ std::string random_string( size_t length, std::function<char(void)> rand_char )
     return str;
 }
 
-
 std::string gen_radnom_str(){
     const auto ch_set = charset();
-    //1) create a non-deterministic random number generator
     std::default_random_engine rng(std::random_device{}());
-    //2) create a random number "shaper" that will give
-    //   us uniformly distributed indices into the character set
     std::uniform_int_distribution<> dist(0, ch_set.size()-1);
-    //3) create a function that ties them together, to get:
-    //   a non-deterministic uniform distribution from the
-    //   character set of your choice.
     auto randchar = [ ch_set,&dist,&rng ](){return ch_set[ dist(rng) ];};
-    //4) set the length of the string you want and profit!
     auto length = 10;
     return random_string(length,randchar);
-
-
 }
 //END RANDOM STRING HELPER FUNCS--------------------------------------------------------------------------------------------
 
@@ -154,11 +143,6 @@ std::string gen_radnom_str(){
 #define send_suspend_command(_ser) send_1byte_cmd(_ser,24) //PAUSE
 
 //------------------------------- ENGRAVING FUNCTIONS ------------------------------------------------------------------
-
-
-
-
-
 
 
 
@@ -243,14 +227,14 @@ int send_home_command(serialib &_ser) {
 
 
 int send_home_and_center_command(serialib &_ser) {
-    int r = send_4byte_cmd(_ser, 26);
+    int ret = send_4byte_cmd(_ser, 26);
     //if home finisehd reset also the head position to zero
-    if (r) {
+    if (ret) {
         head_abs_pos_x = 0;
         head_abs_pos_y = 0;
     }
     thread_sleep(TRAVEL_TIME_DELAY * sqrt(BOUNDING_BOX_MAX_X * BOUNDING_BOX_MAX_Y));
-    return r;
+    return ret;
 }
 
 
@@ -414,8 +398,8 @@ int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_
     //START ENGRAVING
 
 
-    if(_engraving_depth_intensity > 200){
-        _engraving_depth_intensity = 200;
+    if(_engraving_depth_intensity > 255){
+        _engraving_depth_intensity = 255;
     }
     if(_engraving_depth_intensity <= 0){
         _engraving_depth_intensity = 1;
@@ -437,6 +421,7 @@ int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_
         send_fan_on_command(_ser);
     }
     thread_sleep(500);
+    
     //SEND START POSITION in ui app the top_left corner of the image to engrave in the laser area
     send_laser_start_engrave_command_and_move_to_pos(_ser,_engrave_start_offset_x,_engrave_start_offset_y,image);
     thread_sleep(500);
@@ -458,21 +443,20 @@ int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_
     for (int current_height_progress = 0; current_height_progress < bwimg.height(); ++current_height_progress) {
 
 
-        //??????????????????????????????????????????????????????????????????????????????????????????
+        //see README.md
         int num1 = 0;
         for (int index1 = 0; index1 < ilbsize - 9; ++index1) {
             BYTE num2 = 0;
             for (int index2 = 0; index2 < 8; ++index2) {
                 if ((index1 * 8 + index2) < bwimg.width() && bwimg.get_pixel((index1 * 8) + index2, current_height_progress).red == 0) {
                     num2 |= lookup_array[index2];
-                    //   std::cout << "weiZhi:"<<current_height_progress<<"_index1:"<<(int)index1<<"_index2:"<<(int)index2<<"_px:"<<(index1 * 8 + index2)<<"_py:"<<current_height_progress<<"_pR:"<<(int)bwimg.get_pixel(index1 * 8 + index2, current_height_progress).red<<"_num2:"<<(int)num2 << std::endl;
                 }
             }
             img_line_buffer[num1 + 9] = (BYTE)num2;
             ++num1;
         }
 
-        //SET CONFIGRATION
+        //SET CONFIGRATION SEEE README.md
         img_line_buffer[0] = (BYTE)9;
         img_line_buffer[1] = (BYTE) (ilbsize >> 8);
         img_line_buffer[2] = (BYTE) (ilbsize);
@@ -481,7 +465,6 @@ int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_
         const int laser_intesity_mw = LASER_POWER_MW;//TODO
         img_line_buffer[5] = (BYTE) (laser_intesity_mw >> 8);
         img_line_buffer[6] = (BYTE) (laser_intesity_mw);
-
         img_line_buffer[7] = (BYTE) (current_height_progress >> 8);
         img_line_buffer[8] = (BYTE) (current_height_progress);
 
@@ -493,9 +476,7 @@ int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_
                 break;
             }
         }
-
-
-
+        //IF SOMETHIN TO LASER IS IN THIS LINE
         if(is_line_white ){
             for(int pass = 0; pass < _passes;pass++)
             _ser.Write(img_line_buffer,ilbsize);//SEND BUFFER TO ENGRAVER
@@ -504,12 +485,8 @@ int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_
             thread_sleep(100);
         }
         }
-
     }
-
-    //STORE CONFIG DATA IN ARRAY FOR THIS LINE
     return 1;
-
 }
 
 
@@ -562,7 +539,7 @@ int main(int argc, char *argv[]) {
         options
                 .allow_unrecognised_options()
                 .add_options()
-                        ("if", "file to laser eg. ./laser.bmp", cxxopts::value<std::string>(), "./img.bmp")
+                        ("if", "input-file to laser eg. ./laser.bmp", cxxopts::value<std::string>(), "./img.bmp")
                         ("depth", "on time for the laser per pixel", cxxopts::value<int>(), "1-199")
                         ("bwt", "the black white vonversation threshold", cxxopts::value<int>(), "1-255")
                         ("port", "The serial device string", cxxopts::value<std::string>(), "/dev/ttyUSB0")
@@ -570,7 +547,7 @@ int main(int argc, char *argv[]) {
                         ("discrete", "enables the discrete mode", cxxopts::value<bool>(), "true,false")
                         ("offsetx", "offsets the image X", cxxopts::value<int>(), "0-1600-imgage width")
                         ("offsety", "offsets the image Y", cxxopts::value<int>(), "0-1520-imgage width")
-                        ("passes", "how many passes, increase the depth", cxxopts::value<int>(), "1-99")
+                        ("passes", "how many passes, increase the depth", cxxopts::value<int>(), "1")
                         ("help", "Print help")
                 ;
 
@@ -644,19 +621,12 @@ if (result.count("passes"))
             }
             std::cout << "set paases = " <<passes<< std::endl;
         }
-        
-        
         std::cout << "Arguments remain = " << argc << std::endl;
-
     } catch (const cxxopts::OptionException& e)
     {
         std::cout << "error parsing options: " << e.what() << std::endl;
         exit(1);
     }
-
-
-
-
 
 
 
@@ -671,8 +641,8 @@ if (result.count("passes"))
     std::cout << "SERIAL_CONNECTED" << std::endl;
 #endif
 
+    
     Ret = send_connect_sequence_command(ser);
-
     if (Ret <= 0) {
         std::cout << "SERIAL_DEVICE_NO_CONNECTION_ANSWER_IS_IT_THE_RIGHT_DEVICE" << std::endl;
         return -2;
@@ -683,7 +653,6 @@ if (result.count("passes"))
 
 
     //thread_sleep(1000);
-
     send_home_command(ser);
   //  thread_sleep(100);
 
@@ -693,22 +662,6 @@ if (result.count("passes"))
 
     Ret =  start_engraving(ser, file_to_laser,bwt,false,laser_depth,discrete,fan,offset_x,offset_y,passes);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //send_end_command(ser);//send finish cmd
     ser.Close();
-
-
     return Ret;
 }
