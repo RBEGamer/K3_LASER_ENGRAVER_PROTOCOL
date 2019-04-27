@@ -6,7 +6,7 @@ A reverse engineered protocol for the cheap k3 laser engraver
 
 # WHY
 The original software is windows only, no commandline interface or options, in chinese.
-So i tried to sniff the communication to  build commandline version tha accepts bmp files for engraving.
+So i tried to sniff the communication to  build commandline version that accepts bmp files for engraving.
 
 
 
