@@ -1,4 +1,5 @@
-# K3 LASER ENGRAVER - PROTOCOL
+<img src="/documentation/logo.png" />
+
 A reverse engineered protocol for the cheap k3 laser engraver
 
 ![Gopher image](/documentation/pictures/device.JPG)
