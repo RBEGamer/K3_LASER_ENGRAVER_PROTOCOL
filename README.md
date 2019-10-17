@@ -114,7 +114,9 @@ I found out that at commands where the head has to travel long distances it make
 * `connect the laser engraver to usb port and check the device manager or /dev for the serial device`
 
 ## ALL PARAMETERS
-* `./k3_laser_api --port /dev/ttyUSB0 --if ./default.bmp --fan true --discrete false --bwt 100 --depth 50 --home false --offsetx 0 --offsety 0 --passes 1`
+ ```
+./k3_laser_api --port /dev/ttyUSB0 --if ./default.bmp --fan true --discrete false --bwt 100 --depth 50 --home false --offsetx 0 --offsety 0 --passes 1
+```
 
 ### PARAMETERS
 * `port` - set the serial port on linux for example `/dev/ttyUSB0`
