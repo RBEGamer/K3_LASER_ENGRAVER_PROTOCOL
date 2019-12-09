@@ -478,12 +478,12 @@ int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_
         }
         //IF SOMETHIN TO LASER IS IN THIS LINE
         if(is_line_white ){
-            for(int pass = 0; pass < _passes;pass++)
-            _ser.Write(img_line_buffer,ilbsize);//SEND BUFFER TO ENGRAVER
-            wait_for_ack(_ser);
-            std::cout << "progress_" << current_height_progress << " for pass "<< pass << " of "<<_passes <<std::endl;
-            thread_sleep(100);
-        }
+            for(int pass = 0; pass < _passes;pass++) {
+                _ser.Write(img_line_buffer,ilbsize);//SEND BUFFER TO ENGRAVER
+                wait_for_ack(_ser);
+                std::cout << "progress_" << current_height_progress << " for pass "<< pass << " of "<<_passes <<std::endl;
+                thread_sleep(100);
+            }
         }
     }
     return 1;
