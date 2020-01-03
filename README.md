@@ -95,7 +95,7 @@ To see the complete function to sned an image to the engraver see the `int start
 ## THE ACK
 After each command the K3 laser engraver sends a one byte ack. The byte is `9` every time.
 After you receieve the `9` you can send the next command. 
-I found out that at commands where the head has to travel long distances it makes more sense to wait 100ms until the next one is sent to avoid errors. This of the C++ software is this already implemented 
+I found out that at commands where the head has to travel long distances it makes more sense to wait 100ms until the next one is sent to avoid errors.
 
 
 
