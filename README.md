@@ -138,8 +138,8 @@ I found out that at commands where the head has to travel long distances it make
 
 # HOW REVERSE
 
-## First soldered 3 wires to the serial connecteion of the stm32 to sniff the traffic
+##  3 wires (RX,TX,GND) for the serial connection of the stm32 and the USB2Serial converter to sniff the traffic
 ![Gopher image](/documentation/pictures/pcb.JPG)
 
-## Using a DSO/Logic analyser to decode the commands and traffic between the software and STM32
+## Using a DSO/Logic analyser to decode the commands and traffic between the host software and STM32
 ![Gopher image](/documentation/pictures/scope.png)
