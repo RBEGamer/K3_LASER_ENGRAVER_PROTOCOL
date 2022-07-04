@@ -6,9 +6,14 @@
 #include "./bitmap/bitmap_image.hpp"
 #include "cxxopts.hpp"
 #include "./serial/serialib.h"
-#include <unistd.h>
-#include <vector>
+#if defined(_WIN32)
+    #include "./win.hpp"
+#else
+    #include <unistd.h>
+#endif // _WIN32   
 
+
+#include <vector>
 
 #include <math.h> //for sqrt pow
 
@@ -164,7 +169,7 @@ int wait_for_ack(serialib &_ser) {
     while ( trys < WAIT_FOR_ACK_RETRIES) {
         thread_sleep(WAIT_FOR_ACK_TIME);
         trys++;
-        ret = _ser.Read(rec_buffer, 128, 100);
+        ret = _ser.readBytes(rec_buffer, 128, 100);
         if (rec_buffer[0] == 9) {
 #ifdef LOG_OUTPUT_STDOUT
             std::cout << "ACK_OK" << "after " <<trys <<" trys"<< std::endl;
@@ -194,21 +199,21 @@ int wait_for_ack(serialib &_ser) {
 //sends the simple commands with 4 byte command signature see commands.xlsx for that
 int send_4byte_cmd(serialib &_ser, BYTE _cmd) {
     BYTE send_buffer[4] = {_cmd, 0, 4, 0};
-    Ret = ser.Write(send_buffer, 4);
+    Ret = ser.writeBytes(send_buffer, 4);
     return wait_for_ack(_ser);
 }
 
 
 int send_5byte_cmd(serialib &_ser, BYTE _cmd, int _val) {
     BYTE send_buffer[5] = {_cmd, 0, 5, (BYTE) (_val >> 8), (BYTE) _val};
-    Ret = ser.Write(send_buffer, 5);
+    Ret = ser.writeBytes(send_buffer, 5);
     return wait_for_ack(_ser);
 }
 
 
 int send_1byte_cmd(serialib &_ser, BYTE _cmd) {
     BYTE send_buffer[1] = {_cmd};
-    Ret = ser.Write(send_buffer, 1);
+    Ret = ser.writeBytes(send_buffer, 1);
     return wait_for_ack(_ser);
 }
 
@@ -238,7 +243,7 @@ int send_home_and_center_command(serialib &_ser) {
 }
 
 
-int send_move_head_relative_command(serialib &_ser, int _x, int _y) {
+void send_move_head_relative_command(serialib &_ser, int _x, int _y) {
 
 #ifdef CHECK_OUT_OF_BOUNDING_BOX_MOVE
     if ((head_abs_pos_x + _x) > BOUNDING_BOX_MAX_X) {
@@ -265,7 +270,7 @@ int send_move_head_relative_command(serialib &_ser, int _x, int _y) {
     head_abs_pos_y += _y;
 
     //SEND AND WAIT FOR ACK
-    Ret = ser.Write(send_buffer, 7);
+    Ret = ser.writeBytes(send_buffer, 7);
     int r = wait_for_ack(ser);
 
     uint32_t tt = sqrt(squared(_x) + squared(_y)) * TRAVEL_TIME_DELAY; //calc travel time
@@ -276,7 +281,7 @@ int send_move_head_relative_command(serialib &_ser, int _x, int _y) {
 
 
 
-int send_laser_start_engrave_command_and_move_to_pos(serialib &_ser, int _x, int _y, bitmap_image& _img) {
+void send_laser_start_engrave_command_and_move_to_pos(serialib &_ser, int _x, int _y, bitmap_image& _img) {
 //TODO CHECK FOR IMG OUT OF BOUNCE
 #ifdef CHECK_OUT_OF_BOUNDING_BOX_MOVE
     if ((head_abs_pos_x + _x) > BOUNDING_BOX_MAX_X) {
@@ -303,7 +308,7 @@ int send_laser_start_engrave_command_and_move_to_pos(serialib &_ser, int _x, int
     head_abs_pos_y += _y;
 
     //SEND AND WAIT FOR ACK
-    Ret = ser.Write(send_buffer, 7);
+    Ret = ser.writeBytes(send_buffer, 7);
     int r = wait_for_ack(ser);
 
     uint32_t tt = sqrt(squared(_x) + squared(_y)) * TRAVEL_TIME_DELAY; //calc travel time
@@ -314,7 +319,7 @@ int send_laser_start_engrave_command_and_move_to_pos(serialib &_ser, int _x, int
 
 
 //TODO TEST
-int send_move_head_absolute_command(serialib &_ser, int _x, int _y) {
+void send_move_head_absolute_command(serialib &_ser, int _x, int _y) {
     return send_move_head_relative_command(_ser, _x - head_abs_pos_x, _y - head_abs_pos_x);
 }
 
@@ -435,7 +440,7 @@ int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_
     } else {
         ilbsize = (bwimg.width() / 8) + 10;
     }
-    BYTE img_line_buffer[ilbsize];
+    BYTE* img_line_buffer = new BYTE[ilbsize];
 
     BYTE lookup_array[8] = {(BYTE)128, (BYTE)64, (BYTE)32, (BYTE)16, (BYTE)8, (BYTE)2, (BYTE)1};
 
@@ -479,13 +484,14 @@ int start_engraving(serialib &_ser, std::string _bitmap_file, char _black_white_
         //IF SOMETHIN TO LASER IS IN THIS LINE
         if(is_line_white ){
             for(int pass = 0; pass < _passes;pass++) {
-                _ser.Write(img_line_buffer,ilbsize);//SEND BUFFER TO ENGRAVER
+                _ser.writeBytes(img_line_buffer,ilbsize);//SEND BUFFER TO ENGRAVER
                 wait_for_ack(_ser);
                 std::cout << "progress_" << current_height_progress << " for pass "<< pass << " of "<<_passes <<std::endl;
                 thread_sleep(100);
             }
         }
     }
+    delete img_line_buffer;
     return 1;
 }
 
@@ -632,7 +638,7 @@ if (result.count("passes"))
 
 
     //CONNECT TO SERIAL PORT
-    Ret = ser.Open(port.c_str(), SERIAL_BAUD_RATE);
+    Ret = ser.openDevice(port.c_str(), SERIAL_BAUD_RATE);
     if (Ret != 1) {
         std::cout << "CONNECTION_ERROR_CANT_CONNECT" << std::endl;
         return -1;
@@ -662,6 +668,6 @@ if (result.count("passes"))
 
     Ret =  start_engraving(ser, file_to_laser,bwt,false,laser_depth,discrete,fan,offset_x,offset_y,passes);
 
-    ser.Close();
+    ser.closeDevice();
     return Ret;
 }
