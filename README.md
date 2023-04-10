@@ -25,22 +25,21 @@ So i tried to sniff the communication to  build commandline version that accepts
 
 # THE PROTOCOL
 
-For a detailed protocol please `commands.xlsx`
-all red marked commands are not implemented in the software, because i cant figure out what they are doing.
+For a detailed protocol please refer to the `commands.xlsx`.
+All red marked commands are not implemented in the software, because i cant figure out what they are doing.
 
-The protocol is very simple. The most things happend on the host pc.
 
 
 ![Gopher image](/documentation/known_commands.PNG)
 
 
 ## THE IMAGE DATA BUFFER
-After starting the engraving process the laser engraver needs image data.
-The first 9 bytes a fixed and containing information about the lasertime and img size
-The image width is devided by 8 and each 8 pixel will be combined to a value  (0-255). this is the laserontime.
+After starting the engraving process the laser needs image data.
+The first 9 bytes are fixed and containing information about the lasertime and img size
+The image width is devided by 8 and each 8 pixel will be combined to a single byte  (0-255). This is the laserdiode enable time.
 These subpixel will be stored in the buffer after the config section (buffer[9..]).
-So the bufferlength will be `320px_image_width /8 + 9(config lenght)` for each image line.
-This buffer will be send to the laser. Until an Ack is receieved, the buffer will be calculated for the next line in the image.
+So the buffer size is `320px_image_width /8 + 9(config lenght)` for each image line.
+Each line is send to the laser, until an Ack will be receieved. The buffer will be calculated for the next line in the image.
 
 * `buffer[0]` - `9` command opcode
 * `buffer[1]` -  buffer.size() >> 8
@@ -53,7 +52,7 @@ This buffer will be send to the laser. Until an Ack is receieved, the buffer wil
 * `buffer[8]` - current image height position
 
 
-To see the complete function to sned an image to the engraver see the `int start_engraving(` function in `main.cpp`
+To see the complete function to send an image to the engraver, see the `int start_engraving(` function in `main.cpp`.
 
 
 ### Buffer size calucation
@@ -68,12 +67,7 @@ To see the complete function to sned an image to the engraver see the `int start
  ### Converting an Imageline to the img buffer
  ```cpp
   for (int current_height_progress = 0; current_height_progress < bwimg.height(); ++current_height_progress) {
- ```
- 
- 
- 
- ```cpp
- int num1 = 0;
+        int num1 = 0;
         for (int index1 = 0; index1 < img_line_buffer.size() - 9; ++index1) {
             BYTE num2 = 0;
             for (int index2 = 0; index2 < 8; ++index2) {
@@ -93,8 +87,8 @@ To see the complete function to sned an image to the engraver see the `int start
 
 
 ## THE ACK
-After each command the K3 laser engraver sends a one byte ack. The byte is `9` every time.
-After you receieve the `9` you can send the next command. 
+After each command the K3 laser engraver sends a one ack byte `9`.
+After the ack, the next line can be send.
 I found out that at commands where the head has to travel long distances it makes more sense to wait 100ms until the next one is sent to avoid errors.
 
 
@@ -121,14 +115,16 @@ I found out that at commands where the head has to travel long distances it make
 ### PARAMETERS
 * `port` - set the serial port on linux for example `/dev/ttyUSB0`
 * `if` - input file path, bitmap file for engraving. max size 1600x1520
-* `fan` - enabled the fan during engraving
-* `discrete` - enabled the discrete mode. if on the laser dotn turn off between 2 pixels with laser on
-* `bwt` - if image will converted into a black white image. BWT is the number how light in rgb value the pixel can be to turn white.
+* `fan` - enable the fan
+* `discrete` - enable the discrete mode. The laser dont turn off between 2 pixels with laser on state.
+* `bwt` - Image will be converted into a black white image.
 * `depth` - time the laser will be on for each pixel.
 * `home` do a homing before starting
 *`offsetx` - offsets the head before starting
 * `offsety` -  offsets the head before starting
 * `passes` - how many passes the image will be engraved  (default is 1)
+
+
 ## SIMPLE CALL with default settings
 * `./k3_laser_api --port /dev/ttyUSB0 --if ./default.bmp`
 
